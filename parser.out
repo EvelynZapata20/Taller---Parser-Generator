@@ -1,0 +1,53 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> palindromo
+Rule 1     palindromo -> CADENA
+Rule 2     palindromo -> CADENA palindromo
+
+Terminals, with rules where they appear
+
+CADENA               : 1 2
+error                : 
+
+Nonterminals, with rules where they appear
+
+palindromo           : 2 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . palindromo
+    (1) palindromo -> . CADENA
+    (2) palindromo -> . CADENA palindromo
+
+    CADENA          shift and go to state 2
+
+    palindromo                     shift and go to state 1
+
+state 1
+
+    (0) S' -> palindromo .
+
+
+
+state 2
+
+    (1) palindromo -> CADENA .
+    (2) palindromo -> CADENA . palindromo
+    (1) palindromo -> . CADENA
+    (2) palindromo -> . CADENA palindromo
+
+    $end            reduce using rule 1 (palindromo -> CADENA .)
+    CADENA          shift and go to state 2
+
+    palindromo                     shift and go to state 3
+
+state 3
+
+    (2) palindromo -> CADENA palindromo .
+
+    $end            reduce using rule 2 (palindromo -> CADENA palindromo .)
+
